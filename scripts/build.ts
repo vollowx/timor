@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync } from "node:fs";
 import { resolve } from "node:path";
 import * as esbuild from "esbuild";
 import { bundleAsync } from "lightningcss";
@@ -28,6 +28,8 @@ const { code: css } = await bundleAsync({
 writeFileSync(resolve(assets, "index.css"), css);
 console.log("[timor] bundled CSS");
 
+copyFileSync(resolve(root, "src/assets/icon.svg"), resolve(assets, "icon.svg"));
+
 await esbuild.build({
   entryPoints: [resolve(root, "src/ssr-entrypoint.ts")],
   outfile: resolve(dist, "ssr.js"),
@@ -51,6 +53,10 @@ const result = template
   .replace(
     '<script type="module" src="/src/main.ts"></script>',
     '<script type="module" src="/assets/index.js"></script>',
+  )
+  .replace(
+    '<link rel="icon" type="image/svg+xml" href="/src/assets/icon.svg" />',
+    '<link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />',
   )
   .replace("<timor-app></timor-app>", appHtml);
 

@@ -72,5 +72,5 @@ export function formatClockOffset(fastByMs: number): string {
   if (abs < 5) return "your clock is accurate";
   const seconds = (abs / 1000).toFixed(3);
   const direction = fastByMs > 0 ? "ahead" : "behind";
-  return `your clock is ${seconds} s ${direction}`;
+  return `your clock is ${seconds}s ${direction}`;
 }

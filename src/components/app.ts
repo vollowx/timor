@@ -13,6 +13,7 @@ import "./clock-view.js";
 import "./stopwatch-view.js";
 import "./timer-view.js";
 import "./settings-view.js";
+import "./timer-dialog.js";
 
 const NAV_ITEMS = [
   {
@@ -22,22 +23,22 @@ const NAV_ITEMS = [
     activeIcon: "material-symbols:schedule",
   },
   {
-    page: "stopwatch",
-    label: "Stopwatch",
-    icon: "material-symbols:timer-outline",
-    activeIcon: "material-symbols:timer",
-  },
-  {
     page: "timer",
     label: "Timer",
     icon: "material-symbols:alarm-outline",
     activeIcon: "material-symbols:alarm",
   },
+  {
+    page: "stopwatch",
+    label: "Stopwatch",
+    icon: "material-symbols:timer-outline",
+    activeIcon: "material-symbols:timer",
+  },
 ];
 
 const PAGES: Record<string, () => unknown> = {
-  stopwatch: () => html`<stopwatch-view></stopwatch-view>`,
   timer: () => html`<timer-view></timer-view>`,
+  stopwatch: () => html`<stopwatch-view></stopwatch-view>`,
   settings: () => html`<settings-view></settings-view>`,
 };
 
@@ -144,6 +145,8 @@ export class TimorApp extends LitElement {
 
   declare page: string;
 
+  #mq: MediaQueryList | null = null;
+
   render() {
     return html`
       <div class="layout">
@@ -189,10 +192,11 @@ export class TimorApp extends LitElement {
           </md-nav-rail-item>
         </md-nav-rail>
 
-        <main>
+        <main @request-open-timer-dialog=${this.#onOpenTimerDialog}>
           <div class="page">${this.renderPage(this.page)}</div>
         </main>
       </div>
+      <timer-dialog @timer-added=${this.#onTimerAdded}></timer-dialog>
     `;
   }
 
@@ -207,6 +211,8 @@ export class TimorApp extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
+    this.#mq = window.matchMedia("(prefers-color-scheme: dark)");
+    this.#mq.addEventListener("change", this.#onSystemTheme);
     settings.addEventListener("change", this.#onSettingsChange);
     timerStore.addEventListener("change", this.#onTimerChange);
     this.#applyTheme();
@@ -215,11 +221,16 @@ export class TimorApp extends LitElement {
   }
 
   disconnectedCallback(): void {
+    this.#mq?.removeEventListener("change", this.#onSystemTheme);
     settings.removeEventListener("change", this.#onSettingsChange);
     timerStore.removeEventListener("change", this.#onTimerChange);
     timeSync.stop();
     super.disconnectedCallback();
   }
+
+  readonly #onSystemTheme = (): void => {
+    if (settings.theme === "auto") this.#applyTheme();
+  };
 
   readonly #onSettingsChange = (): void => {
     this.#applyTheme();
@@ -234,10 +245,13 @@ export class TimorApp extends LitElement {
   }
 
   #applyTheme(): void {
-    const theme = settings.theme;
-    document.documentElement.dataset.mdColorScheme = theme;
+    const isDark =
+      settings.theme === "auto"
+        ? (this.#mq?.matches ?? false)
+        : settings.theme === "dark";
+    document.documentElement.dataset.mdColorScheme = isDark ? "dark" : "light";
     const meta = document.querySelector('meta[name="theme-color"]');
-    meta?.setAttribute("content", theme === "dark" ? "#11140e" : "#f8faf0");
+    meta?.setAttribute("content", isDark ? "#11140e" : "#f8faf0");
   }
 
   #onNavClick(e: Event): void {
@@ -249,18 +263,30 @@ export class TimorApp extends LitElement {
   }
 
   #onFabClick(): void {
-    void this.#switchPage("timer").then(() => {
-      const view = this.shadowRoot?.querySelector("timer-view") as {
-        openSetup: () => void;
-      } | null;
-      view?.openSetup();
-    });
+    this.#openTimerDialog();
+  }
+
+  #onOpenTimerDialog = (): void => {
+    this.#openTimerDialog();
+  };
+
+  #onTimerAdded = (): void => {
+    if (this.page !== "timer") void this.#switchPage("timer");
+  };
+
+  #openTimerDialog(): void {
+    const dialog = this.shadowRoot?.querySelector(
+      "timer-dialog",
+    ) as HTMLElement & { show(): void };
+    dialog?.show();
   }
 
   async #switchPage(page: string): Promise<void> {
     if (page === this.page) return;
     const el = this.shadowRoot?.querySelector(".page") as HTMLElement & {
-      startViewTransition?: (cb: () => Promise<void>) => { ready: Promise<void> };
+      startViewTransition?: (cb: () => Promise<void>) => {
+        ready: Promise<void>;
+      };
     };
     if (!el?.startViewTransition) {
       this.page = page;

@@ -4,7 +4,7 @@ const KEY_24H = "timor.24h";
 const KEY_OFFSET = "timor.offset";
 const KEY_THEME = "timor.theme";
 
-export type Theme = "light" | "dark";
+export type Theme = "auto" | "light" | "dark";
 
 export interface SettingsState {
   use24h: boolean;
@@ -17,13 +17,12 @@ function systemOffsetMinutes(): number {
 }
 
 function systemTheme(): Theme {
-  try {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  } catch {
-    return "light";
-  }
+  return "auto";
+}
+
+function resolveTheme(stored: string | null): Theme {
+  if (stored === "light" || stored === "dark") return stored;
+  return "auto";
 }
 
 function readState(): SettingsState {
@@ -43,10 +42,7 @@ function readState(): SettingsState {
       storedOffset !== null && Number.isFinite(storedOffset)
         ? storedOffset
         : systemOffsetMinutes(),
-    theme:
-      storedTheme === "light" || storedTheme === "dark"
-        ? storedTheme
-        : systemTheme(),
+    theme: resolveTheme(storedTheme),
   };
 }
 

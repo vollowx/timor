@@ -1,12 +1,9 @@
 import { LitElement, html, css } from "lit";
 
 import { settings } from "../lib/settings.js";
-import { listOffsets, type OffsetOption } from "../lib/offsets.js";
-import { formatOffset } from "../lib/format.js";
 
 import "@vollowx/seele/m3/switch/switch.js";
-import "@vollowx/seele/m3/select/outlined-select.js";
-import "@vollowx/seele/m3/select/option.js";
+import "@vollowx/seele/m3/radio/radio.js";
 
 export class SettingsView extends LitElement {
   static styles = css`
@@ -37,8 +34,15 @@ export class SettingsView extends LitElement {
       font: var(--md-sys-typography-label-large);
     }
 
-    md-outlined-select {
-      width: 300px;
+    label {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    label:has(md-radio) {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-inline-start: 8px;
     }
   `;
 
@@ -56,37 +60,39 @@ export class SettingsView extends LitElement {
           ></md-switch>
         </label>
 
-        <label class="row">
-          <span>Dark mode</span>
-          <md-switch
-            aria-label="Dark mode"
-            .checked=${settings.theme === "dark"}
-            @change=${this.#onTheme}
-          ></md-switch>
-        </label>
-
-        <label class="row">
-          <span>Offset</span>
-          <md-outlined-select
-            label="Offset"
-            .value=${String(settings.offsetMinutes)}
-            @input=${this.#onOffset}
-          >
-            ${this.#options().map(
-              (o) =>
-                html`<md-option
-                  value=${o.value}
-                  ?selected=${o.value === settings.offsetMinutes}
-                  >${o.label}</md-option
-                >`,
-            )}
-          </md-outlined-select>
-        </label>
+        <div class="row">
+          <span>Theme</span>
+          <span @change=${this.#onTheme}>
+            <label>
+              <md-radio
+                name="theme"
+                value="auto"
+                ?checked=${settings.theme === "auto"}
+              ></md-radio>
+              Automatic
+            </label>
+            <label>
+              <md-radio
+                name="theme"
+                value="light"
+                ?checked=${settings.theme === "light"}
+              ></md-radio>
+              Light
+            </label>
+            <label>
+              <md-radio
+                name="theme"
+                value="dark"
+                ?checked=${settings.theme === "dark"}
+              ></md-radio>
+              Dark
+            </label>
+          </span>
+        </div>
       </section>
     `;
   }
 
-  readonly #offsets = listOffsets();
   readonly #onChange = (): void => this.requestUpdate();
 
   connectedCallback(): void {
@@ -103,24 +109,11 @@ export class SettingsView extends LitElement {
     settings.setUse24h(e.detail);
   }
 
-  #onTheme(e: CustomEvent<boolean>): void {
-    settings.setTheme(e.detail ? "dark" : "light");
-  }
-
-  #onOffset(e: Event): void {
-    const value = Number((e.target as HTMLInputElement).value);
-    if (Number.isFinite(value)) settings.setOffsetMinutes(value);
-  }
-
-  #options(): OffsetOption[] {
-    const offsets = this.#offsets;
-    const current = settings.offsetMinutes;
-    // Safety net: always offer the current offset even if it falls between
-    // the half-hour steps (e.g. UTC+05:45).
-    if (!offsets.some((o) => o.value === current)) {
-      return [{ value: current, label: formatOffset(current) }, ...offsets];
+  #onTheme(e: Event): void {
+    const value = (e.target as HTMLInputElement).value;
+    if (value === "auto" || value === "light" || value === "dark") {
+      settings.setTheme(value);
     }
-    return offsets;
   }
 }
 

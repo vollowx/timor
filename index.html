@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#f8faf0" />
     <meta name="description" content="Timor - a clock, stopwatch and timer." />
     <title>Timor</title>
+    <link rel="icon" type="image/svg+xml" href="/src/assets/icon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,13 +17,12 @@
     <script>
       (() => {
         try {
-          const saved = localStorage.getItem("timor.theme");
+          const theme = localStorage.getItem("timor.theme") || "auto";
+          const prefersDark = matchMedia(
+            "(prefers-color-scheme: dark)",
+          ).matches;
           document.documentElement.dataset.mdColorScheme =
-            saved === "light" || saved === "dark"
-              ? saved
-              : matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light";
+            theme === "auto" ? (prefersDark ? "dark" : "light") : theme;
         } catch {}
       })();
     </script>

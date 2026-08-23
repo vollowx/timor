@@ -10,5 +10,11 @@ bun i
 bun dev
 bun build
 bun preview
-bun typecheck
 ```
+
+## TODO
+
+- [ ] Try to do i18n with Lit
+- [ ] Support smaller screens like phones
+    - [ ] Add navigation bar for seele
+- [ ] `autofocus` in dialogs

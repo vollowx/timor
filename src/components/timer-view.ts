@@ -3,30 +3,12 @@ import { LitElement, html, css } from "lit";
 import { formatCountdown, formatDurationLabel } from "../lib/format.js";
 import { timerStore, type TimerItem } from "../lib/timer-store.js";
 
-import type { M3Dialog } from "@vollowx/seele/m3/dialog/dialog.js";
-import type { M3OutlinedTextField } from "@vollowx/seele/m3/text-field/outlined-text-field.js";
 import "iconify-icon";
-import "@vollowx/seele/m3/dialog/dialog.js";
-import "@vollowx/seele/m3/text-field/outlined-text-field.js";
 import "@vollowx/seele/m3/button/common-button.js";
 import "@vollowx/seele/m3/button/icon-button.js";
 import "@vollowx/seele/m3/button/icon-button-toggle.js";
 import "@vollowx/seele/m3/tooltip/tooltip.js";
 import "./giant-time.js";
-
-interface Preset {
-  label: string;
-  ms: number;
-}
-
-const PRESETS: Preset[] = [
-  { label: "1 min", ms: 60_000 },
-  { label: "5 min", ms: 5 * 60_000 },
-  { label: "10 min", ms: 10 * 60_000 },
-  { label: "15 min", ms: 15 * 60_000 },
-  { label: "30 min", ms: 30 * 60_000 },
-  { label: "1 hour", ms: 60 * 60_000 },
-];
 
 export class TimerView extends LitElement {
   static styles = css`
@@ -105,35 +87,9 @@ export class TimerView extends LitElement {
     }
 
     .empty {
-      margin: 0;
+      margin: auto;
       color: var(--md-sys-color-on-surface-variant);
       font: var(--md-sys-typography-body-medium);
-    }
-
-    md-dialog::part(dialog) {
-      width: 400px;
-    }
-
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      min-width: min(80vw, 360px);
-    }
-
-    .duration {
-      display: flex;
-      gap: 8px;
-
-      md-outlined-text-field {
-        min-width: unset;
-      }
-    }
-
-    .presets {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
     }
   `;
 
@@ -141,60 +97,11 @@ export class TimerView extends LitElement {
     return html`
       <div class="timer-page">
         ${timerStore.list.length === 0
-          ? html`<p class="empty">No any timer.</p>`
+          ? html`<p class="empty">
+              No any timer.<br />
+              Add one from the top-left button.
+            </p>`
           : timerStore.list.map((t) => this.renderTimer(t))}
-
-        <md-dialog>
-          <span slot="headline">New timer</span>
-
-          <div class="form">
-            <div class="duration">
-              <md-outlined-text-field
-                id="hours"
-                placeholder="hour"
-                type="number"
-                min="0"
-              ></md-outlined-text-field>
-
-              <md-outlined-text-field
-                id="minutes"
-                placeholder="min"
-                type="number"
-                min="0"
-              ></md-outlined-text-field>
-
-              <md-outlined-text-field
-                id="seconds"
-                placeholder="sec"
-                type="number"
-                min="0"
-              ></md-outlined-text-field>
-            </div>
-
-            <div class="presets">
-              ${PRESETS.map(
-                (p) => html`
-                  <md-button
-                    size="s"
-                    variant="tonal"
-                    @click=${() => this.#addTimer(p.ms)}
-                  >
-                    ${p.label}
-                  </md-button>
-                `,
-              )}
-            </div>
-          </div>
-
-          <div slot="actions">
-            <md-button variant="text" @click=${this.#closeSetup}>
-              Cancel
-            </md-button>
-            <md-button variant="text" @click=${this.#startManual}>
-              Start
-            </md-button>
-          </div>
-        </md-dialog>
       </div>
     `;
   }
@@ -261,7 +168,7 @@ export class TimerView extends LitElement {
               size="xl"
               width="wide"
               aria-label="Add timer"
-              @click=${this.openSetup}
+              @click=${this.#onAddClick}
             >
               <iconify-icon icon="material-symbols:add"></iconify-icon>
             </md-icon-button>
@@ -284,51 +191,11 @@ export class TimerView extends LitElement {
     super.disconnectedCallback();
   }
 
-  openSetup(): void {
-    void this.#openSetup();
-  }
-
-  #field(id: string) {
-    return this.shadowRoot!.getElementById(id)! as any as M3OutlinedTextField;
-  }
-
-  async #openSetup(): Promise<void> {
-    await this.updateComplete;
-    const dialog = this.shadowRoot?.querySelector(
-      "md-dialog",
-    ) as M3Dialog | null;
-    if (!dialog) return;
-    await dialog.updateComplete;
-
-    this.#field("hours").value = "";
-    this.#field("minutes").value = "";
-    this.#field("seconds").value = "";
-    dialog.show();
-  }
-
-  #closeSetup(): void {
-    this.shadowRoot?.querySelector("md-dialog")?.close();
-  }
-
-  #readDuration(): number {
-    const hours = parseInt(this.#field("hours").value, 10) || 0;
-    const minutes = parseInt(this.#field("minutes").value, 10) || 0;
-    const seconds = parseInt(this.#field("seconds").value, 10) || 0;
-    return (
-      Math.max(0, hours) * 3_600_000 +
-      Math.max(0, minutes) * 60_000 +
-      Math.max(0, seconds) * 1000
+  #onAddClick = (): void => {
+    this.dispatchEvent(
+      new Event("request-open-timer-dialog", { bubbles: true, composed: true }),
     );
-  }
-
-  #addTimer(ms: number): void {
-    timerStore.addTimer(ms, "");
-    this.#closeSetup();
-  }
-
-  #startManual(): void {
-    this.#addTimer(this.#readDuration());
-  }
+  };
 }
 
 customElements.define("timer-view", TimerView);

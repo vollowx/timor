@@ -101,7 +101,7 @@ export class GiantTime extends LitElement {
   }
 
   updated(): void {
-    this.#fit();
+    this.updateComplete.then(() => this.#fit());
   }
 
   #fit(): void {

@@ -112,11 +112,11 @@ export class StopwatchView extends LitElement {
           </md-icon-button>
         </md-button-group>
 
-        <md-tooltip for="lap">Lap</md-tooltip>
-        <md-tooltip for="start-pause">
+        <md-tooltip align="bottom" for="lap">Lap</md-tooltip>
+        <md-tooltip align="bottom" for="start-pause">
           ${running ? "Pause" : stopwatchStore.elapsed ? "Resume" : "Start"}
         </md-tooltip>
-        <md-tooltip for="reset">Reset</md-tooltip>
+        <md-tooltip align="bottom" for="reset">Reset</md-tooltip>
       </div>
 
       ${laps.length > 0
