@@ -6,6 +6,7 @@ import { bundleAsync } from "lightningcss";
 const root = resolve(import.meta.dirname, "..");
 const dist = resolve(root, "dist");
 const assets = resolve(dist, "assets");
+const base = (process.env.BASE_PATH ?? "").replace(/\/$/, "") || "";
 
 if (!existsSync(assets)) mkdirSync(assets, { recursive: true });
 
@@ -48,15 +49,15 @@ const template = readFileSync(resolve(root, "index.html"), "utf-8");
 const result = template
   .replace(
     '<link rel="stylesheet" href="/src/styles/app.css" />',
-    '<link rel="stylesheet" href="/assets/index.css" />',
+    `<link rel="stylesheet" href="${base}/assets/index.css" />`,
   )
   .replace(
     '<script type="module" src="/src/main.ts"></script>',
-    '<script type="module" src="/assets/index.js"></script>',
+    `<script type="module" src="${base}/assets/index.js"></script>`,
   )
   .replace(
     '<link rel="icon" type="image/svg+xml" href="/src/assets/icon.svg" />',
-    '<link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />',
+    `<link rel="icon" type="image/svg+xml" href="${base}/assets/icon.svg" />`,
   )
   .replace("<timor-app></timor-app>", appHtml);
 

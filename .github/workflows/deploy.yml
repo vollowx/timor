@@ -17,6 +17,8 @@ jobs:
       - run: bun install --frozen-lockfile
 
       - run: bun run build
+        env:
+          BASE_PATH: /timor
 
       - name: Deploy to www branch
         uses: peaceiris/actions-gh-pages@v4
