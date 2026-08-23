@@ -22,24 +22,25 @@ const PRESETS: Preset[] = [
 
 export class TimerDialog extends LitElement {
   static styles = css`
+    :host {
+      z-index: 20;
+    }
     md-dialog::part(dialog) {
       width: 320px;
     }
+
     .form {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
-
     .duration {
       display: flex;
       gap: 8px;
     }
-
     .duration md-outlined-text-field {
       min-width: unset;
     }
-
     .presets {
       display: flex;
       flex-wrap: wrap;
