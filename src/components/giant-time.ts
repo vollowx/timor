@@ -1,7 +1,9 @@
 import { LitElement, html, css, nothing } from "lit";
+import { customElement } from "@vollowx/seele/core/decorators.js";
 
 const FIT_PADDING = 32;
 
+@customElement("giant-time")
 export class GiantTime extends LitElement {
   static styles = css`
     :host {
@@ -139,5 +141,3 @@ export class GiantTime extends LitElement {
     }
   }
 }
-
-customElements.define("giant-time", GiantTime);

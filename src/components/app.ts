@@ -1,4 +1,5 @@
 import { LitElement, html, css } from "lit";
+import { state, customElement } from "lit/decorators.js";
 
 import { settings } from "../lib/settings.js";
 import { timeSync } from "../lib/time-sync.js";
@@ -42,14 +43,10 @@ const PAGES: Record<string, () => unknown> = {
   settings: () => html`<settings-view></settings-view>`,
 };
 
+@customElement("timor-app")
 export class TimorApp extends LitElement {
   static styles = css`
     :host {
-      display: block;
-      min-height: 100dvh;
-    }
-
-    .layout {
       display: flex;
       height: 100dvh;
     }
@@ -139,74 +136,62 @@ export class TimorApp extends LitElement {
     }
   `;
 
-  static properties = {
-    page: { type: String, state: true },
-  };
-
-  declare page: string;
+  @state() page = "clock";
 
   #mq: MediaQueryList | null = null;
 
   render() {
     return html`
-      <div class="layout">
-        <md-nav-rail @click=${this.#onNavClick}>
-          <md-fab
-            slot="fab"
-            aria-label="Add timer"
-            color="primary-container"
-            @click=${this.#onFabClick}
-          >
-            <iconify-icon icon="material-symbols:add"></iconify-icon>
-          </md-fab>
+      <md-nav-rail @click=${this.#onNavClick}>
+        <md-fab
+          slot="fab"
+          aria-label="Add timer"
+          color="primary-container"
+          @click=${this.#onFabClick}
+        >
+          <iconify-icon icon="material-symbols:add"></iconify-icon>
+        </md-fab>
 
-          ${NAV_ITEMS.map(
-            (item) => html`
-              <md-nav-rail-item
-                label=${item.label}
-                data-page=${item.page}
-                ?active=${this.page === item.page}
-              >
-                <iconify-icon icon=${item.icon}></iconify-icon>
-                <iconify-icon
-                  slot="active"
-                  icon=${item.activeIcon}
-                ></iconify-icon>
-              </md-nav-rail-item>
-            `,
-          )}
+        ${NAV_ITEMS.map(
+          (item) => html`
+            <md-nav-rail-item
+              label=${item.label}
+              data-page=${item.page}
+              ?active=${this.page === item.page}
+            >
+              <iconify-icon icon=${item.icon}></iconify-icon>
+              <iconify-icon
+                slot="active"
+                icon=${item.activeIcon}
+              ></iconify-icon>
+            </md-nav-rail-item>
+          `,
+        )}
 
-          <md-nav-rail-item
-            label="Settings"
-            data-page="settings"
-            ?active=${this.page === "settings"}
-            end
-          >
-            <iconify-icon
-              icon="material-symbols:settings-outline"
-            ></iconify-icon>
-            <iconify-icon
-              slot="active"
-              icon="material-symbols:settings"
-            ></iconify-icon>
-          </md-nav-rail-item>
-        </md-nav-rail>
+        <md-nav-rail-item
+          label="Settings"
+          data-page="settings"
+          ?active=${this.page === "settings"}
+          end
+        >
+          <iconify-icon icon="material-symbols:settings-outline"></iconify-icon>
+          <iconify-icon
+            slot="active"
+            icon="material-symbols:settings"
+          ></iconify-icon>
+        </md-nav-rail-item>
+      </md-nav-rail>
 
-        <main @request-open-timer-dialog=${this.#onOpenTimerDialog}>
-          <div class="page">${this.renderPage(this.page)}</div>
-        </main>
-      </div>
+      <main @request-open-timer-dialog=${this.#onOpenTimerDialog}>
+        <div class="page">${this.renderPage(this.page)}</div>
+      </main>
+
       <timer-dialog @timer-added=${this.#onTimerAdded}></timer-dialog>
     `;
   }
 
   renderPage(page: string) {
     return (PAGES[page] ?? (() => html`<clock-view></clock-view>`))();
-  }
-
-  constructor() {
-    super();
-    this.page = "clock";
   }
 
   connectedCallback(): void {
@@ -301,5 +286,3 @@ export class TimorApp extends LitElement {
     } catch {}
   }
 }
-
-customElements.define("timor-app", TimorApp);

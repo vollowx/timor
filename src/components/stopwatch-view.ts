@@ -1,4 +1,5 @@
 import { LitElement, html, css } from "lit";
+import { customElement } from "@vollowx/seele/core/decorators.js";
 
 import { formatStopwatch, formatDuration } from "../lib/format.js";
 import { stopwatchStore } from "../lib/stopwatch-store.js";
@@ -11,6 +12,7 @@ import "@vollowx/seele/m3/tooltip/tooltip.js";
 import "@vollowx/seele/m3/list/list.js";
 import "@vollowx/seele/m3/list/list-item.js";
 
+@customElement("stopwatch-view")
 export class StopwatchView extends LitElement {
   static styles = css`
     :host {
@@ -153,5 +155,3 @@ export class StopwatchView extends LitElement {
     super.disconnectedCallback();
   }
 }
-
-customElements.define("stopwatch-view", StopwatchView);

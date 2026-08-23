@@ -1,10 +1,12 @@
 import { LitElement, html, css } from "lit";
+import { customElement } from "@vollowx/seele/core/decorators.js";
 
 import { settings } from "../lib/settings.js";
 
 import "@vollowx/seele/m3/switch/switch.js";
 import "@vollowx/seele/m3/radio/radio.js";
 
+@customElement("settings-view")
 export class SettingsView extends LitElement {
   static styles = css`
     :host {
@@ -116,5 +118,3 @@ export class SettingsView extends LitElement {
     }
   }
 }
-
-customElements.define("settings-view", SettingsView);

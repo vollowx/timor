@@ -7,7 +7,9 @@ import "@vollowx/seele/m3/text-field/outlined-text-field.js";
 import "@vollowx/seele/m3/button/common-button.js";
 import "@vollowx/seele/m3/list/list.js";
 import "@vollowx/seele/m3/list/list-item.js";
+import { customElement } from "@vollowx/seele/core/decorators.js";
 
+@customElement("timezone-dialog", false)
 export class TimezoneDialog extends LitElement {
   static styles = css`
     :host {
@@ -109,5 +111,3 @@ export class TimezoneDialog extends LitElement {
     return `UTC${sign}${h}${m ? `:${String(m).padStart(2, "0")}` : ""}`;
   }
 }
-
-customElements.define("timezone-dialog", TimezoneDialog);

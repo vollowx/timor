@@ -1,5 +1,6 @@
 import { LitElement, html, css } from "lit";
 import { ref, createRef } from "lit/directives/ref.js";
+import { customElement } from "@vollowx/seele/core/decorators.js";
 import { timerStore } from "../lib/timer-store.js";
 
 import "@vollowx/seele/m3/dialog/dialog.js";
@@ -20,6 +21,7 @@ const PRESETS: Preset[] = [
   { label: "1 hour", ms: 60 * 60_000 },
 ];
 
+@customElement("timer-dialog", false)
 export class TimerDialog extends LitElement {
   static styles = css`
     :host {
@@ -137,5 +139,3 @@ export class TimerDialog extends LitElement {
     this.#add(this.#parseDuration());
   };
 }
-
-customElements.define("timer-dialog", TimerDialog);

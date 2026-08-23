@@ -1,6 +1,7 @@
 import { LitElement, html, css } from "lit";
-import { timeSync } from "../lib/time-sync.js";
+import { customElement } from "@vollowx/seele/core/decorators.js";
 
+import { timeSync } from "../lib/time-sync.js";
 import geo from "../assets/world-map-shape.js";
 
 const DOT_SIZE = 8;
@@ -33,6 +34,7 @@ function cosAngularDistance(
   return Math.sin(a) * Math.sin(b) + Math.cos(a) * Math.cos(b) * Math.cos(d);
 }
 
+@customElement("world-map", false)
 export class WorldMap extends LitElement {
   static styles = css`
     :host {
@@ -156,5 +158,3 @@ export class WorldMap extends LitElement {
     ctx.globalAlpha = 1;
   }
 }
-
-customElements.define("world-map", WorldMap);

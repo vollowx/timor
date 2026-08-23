@@ -1,4 +1,5 @@
 import { LitElement, html, css } from "lit";
+import { customElement } from "@vollowx/seele/core/decorators.js";
 
 import { formatCountdown, formatDurationLabel } from "../lib/format.js";
 import { timerStore, type TimerItem } from "../lib/timer-store.js";
@@ -10,6 +11,7 @@ import "@vollowx/seele/m3/button/icon-button-toggle.js";
 import "@vollowx/seele/m3/tooltip/tooltip.js";
 import "./giant-time.js";
 
+@customElement("timer-view")
 export class TimerView extends LitElement {
   static styles = css`
     :host {
@@ -197,5 +199,3 @@ export class TimerView extends LitElement {
     );
   };
 }
-
-customElements.define("timer-view", TimerView);
