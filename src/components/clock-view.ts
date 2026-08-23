@@ -35,7 +35,7 @@ export class ClockView extends LitElement {
       margin-top: auto;
       display: flex;
       flex-direction: column;
-      padding: 48px 24px 16px;
+      padding: 48px 24px 24px;
       max-height: 70%;
     }
 

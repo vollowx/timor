@@ -34,8 +34,6 @@ export class TimezoneList extends LitElement {
 
     md-list-item {
       background-color: var(--md-sys-color-surface-container);
-      border-radius: 0;
-      margin-block: 0;
     }
 
     md-list-item:first-child {
