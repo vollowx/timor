@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8faf0" />
+    <meta name="description" content="Timor - a clock, stopwatch and timer." />
+    <title>Timor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght,ROND@6..144,1..1000,0..100&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/app.css" />
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem("timor.theme");
+          document.documentElement.dataset.mdColorScheme =
+            saved === "light" || saved === "dark"
+              ? saved
+              : matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body>
+    <timor-app></timor-app>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

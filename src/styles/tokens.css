@@ -1,0 +1,160 @@
+:root {
+  --md-ref-typeface-brand: "Google Sans Flex";
+  --md-ref-typeface-plain: "Google Sans Flex";
+
+  --_brand: var(--md-ref-typeface-brand, sans-serif);
+  --_plain: var(--md-ref-typeface-plain, sans-serif);
+
+  --md-sys-typography-display-large: 400 3.5625rem / 4rem var(--_brand);
+  --md-sys-typography-display-medium: 400 2.8125rem / 3.25rem var(--_brand);
+  --md-sys-typography-display-small: 400 2.25rem / 2.75rem var(--_brand);
+  --md-sys-typography-headline-large: 400 2rem / 2.5rem var(--_brand);
+  --md-sys-typography-headline-medium: 400 1.75rem / 2.25rem var(--_brand);
+  --md-sys-typography-headline-small: 400 1.5rem / 2rem var(--_brand);
+  --md-sys-typography-title-large: 400 1.375rem / 1.75rem var(--_brand);
+  --md-sys-typography-title-medium: 500 1rem / 1.25rem var(--_plain);
+  --md-sys-typography-title-small: 500 0.875rem / 1.125rem var(--_plain);
+  --md-sys-typography-label-large: 500 0.875rem / 1.25rem var(--_plain);
+  --md-sys-typography-label-medium: 500 0.75rem / 1rem var(--_plain);
+  --md-sys-typography-label-small: 500 0.6875rem / 0.875rem var(--_plain);
+  --md-sys-typography-body-large: 400 1rem / 1.5rem var(--_plain);
+  --md-sys-typography-body-medium: 400 0.875rem / 1.25rem var(--_plain);
+  --md-sys-typography-body-small: 400 0.75rem / 1rem var(--_plain);
+
+  --md-sys-elevation-level-0: 0;
+  --md-sys-elevation-level-1: 1;
+  --md-sys-elevation-level-2: 3;
+  --md-sys-elevation-level-3: 6;
+  --md-sys-elevation-level-4: 8;
+  --md-sys-elevation-level-5: 12;
+  --md-sys-elevation-shadow-1:
+    0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.3);
+  --md-sys-elevation-shadow-2:
+    0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.3);
+  --md-sys-elevation-shadow-3:
+    0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+  --md-sys-elevation-shadow-4:
+    0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
+  --md-sys-elevation-shadow-5:
+    0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3);
+
+  --md-sys-motion-spatial-fast: cubic-bezier(0.42, 1.67, 0.21, 0.9);
+  --md-sys-motion-spatial-fast-duration: 350ms;
+  --md-sys-motion-spatial-default: cubic-bezier(0.38, 1.21, 0.22, 1);
+  --md-sys-motion-spatial-default-duration: 500ms;
+  --md-sys-motion-spatial-slow: cubic-bezier(0.39, 1.29, 0.35, 0.98);
+  --md-sys-motion-spatial-slow-duration: 650ms;
+
+  --md-sys-motion-effects-fast: cubic-bezier(0.31, 0.94, 0.34, 1);
+  --md-sys-motion-effects-fast-duration: 150ms;
+  --md-sys-motion-effects-default: cubic-bezier(0.34, 0.8, 0.34, 1);
+  --md-sys-motion-effects-default-duration: 200ms;
+  --md-sys-motion-effects-slow: cubic-bezier(0.34, 0.88, 0.34, 1);
+  --md-sys-motion-effects-slow-duration: 300ms;
+}
+
+:root[data-md-color-scheme="light"] {
+  --md-sys-color-primary: rgb(109 94 15);
+  --md-sys-color-surface-tint: rgb(109 94 15);
+  --md-sys-color-on-primary: rgb(255 255 255);
+  --md-sys-color-primary-container: rgb(248 226 135);
+  --md-sys-color-on-primary-container: rgb(83 70 0);
+  --md-sys-color-secondary: rgb(102 94 64);
+  --md-sys-color-on-secondary: rgb(255 255 255);
+  --md-sys-color-secondary-container: rgb(238 226 188);
+  --md-sys-color-on-secondary-container: rgb(78 71 42);
+  --md-sys-color-tertiary: rgb(67 102 78);
+  --md-sys-color-on-tertiary: rgb(255 255 255);
+  --md-sys-color-tertiary-container: rgb(197 236 206);
+  --md-sys-color-on-tertiary-container: rgb(44 78 56);
+  --md-sys-color-error: rgb(186 26 26);
+  --md-sys-color-on-error: rgb(255 255 255);
+  --md-sys-color-error-container: rgb(255 218 214);
+  --md-sys-color-on-error-container: rgb(147 0 10);
+  --md-sys-color-background: rgb(255 249 238);
+  --md-sys-color-on-background: rgb(30 27 19);
+  --md-sys-color-surface: rgb(255 249 238);
+  --md-sys-color-on-surface: rgb(30 27 19);
+  --md-sys-color-surface-variant: rgb(234 226 208);
+  --md-sys-color-on-surface-variant: rgb(75 71 57);
+  --md-sys-color-outline: rgb(124 119 103);
+  --md-sys-color-outline-variant: rgb(205 198 180);
+  --md-sys-color-shadow: rgb(0 0 0);
+  --md-sys-color-scrim: rgb(0 0 0);
+  --md-sys-color-inverse-surface: rgb(51 48 39);
+  --md-sys-color-inverse-on-surface: rgb(247 240 226);
+  --md-sys-color-inverse-primary: rgb(219 198 110);
+  --md-sys-color-primary-fixed: rgb(248 226 135);
+  --md-sys-color-on-primary-fixed: rgb(34 27 0);
+  --md-sys-color-primary-fixed-dim: rgb(219 198 110);
+  --md-sys-color-on-primary-fixed-variant: rgb(83 70 0);
+  --md-sys-color-secondary-fixed: rgb(238 226 188);
+  --md-sys-color-on-secondary-fixed: rgb(33 27 4);
+  --md-sys-color-secondary-fixed-dim: rgb(209 198 161);
+  --md-sys-color-on-secondary-fixed-variant: rgb(78 71 42);
+  --md-sys-color-tertiary-fixed: rgb(197 236 206);
+  --md-sys-color-on-tertiary-fixed: rgb(0 33 15);
+  --md-sys-color-tertiary-fixed-dim: rgb(169 208 179);
+  --md-sys-color-on-tertiary-fixed-variant: rgb(44 78 56);
+  --md-sys-color-surface-dim: rgb(224 217 204);
+  --md-sys-color-surface-bright: rgb(255 249 238);
+  --md-sys-color-surface-container-lowest: rgb(255 255 255);
+  --md-sys-color-surface-container-low: rgb(250 243 229);
+  --md-sys-color-surface-container: rgb(244 237 223);
+  --md-sys-color-surface-container-high: rgb(238 232 218);
+  --md-sys-color-surface-container-highest: rgb(232 226 212);
+  color-scheme: light;
+}
+
+:root[data-md-color-scheme="dark"] {
+  --md-sys-color-primary: rgb(219 198 110);
+  --md-sys-color-surface-tint: rgb(219 198 110);
+  --md-sys-color-on-primary: rgb(58 48 0);
+  --md-sys-color-primary-container: rgb(83 70 0);
+  --md-sys-color-on-primary-container: rgb(248 226 135);
+  --md-sys-color-secondary: rgb(209 198 161);
+  --md-sys-color-on-secondary: rgb(54 48 22);
+  --md-sys-color-secondary-container: rgb(78 71 42);
+  --md-sys-color-on-secondary-container: rgb(238 226 188);
+  --md-sys-color-tertiary: rgb(169 208 179);
+  --md-sys-color-on-tertiary: rgb(20 55 35);
+  --md-sys-color-tertiary-container: rgb(44 78 56);
+  --md-sys-color-on-tertiary-container: rgb(197 236 206);
+  --md-sys-color-error: rgb(255 180 171);
+  --md-sys-color-on-error: rgb(105 0 5);
+  --md-sys-color-error-container: rgb(147 0 10);
+  --md-sys-color-on-error-container: rgb(255 218 214);
+  --md-sys-color-background: rgb(21 19 11);
+  --md-sys-color-on-background: rgb(232 226 212);
+  --md-sys-color-surface: rgb(21 19 11);
+  --md-sys-color-on-surface: rgb(232 226 212);
+  --md-sys-color-surface-variant: rgb(75 71 57);
+  --md-sys-color-on-surface-variant: rgb(205 198 180);
+  --md-sys-color-outline: rgb(150 144 128);
+  --md-sys-color-outline-variant: rgb(75 71 57);
+  --md-sys-color-shadow: rgb(0 0 0);
+  --md-sys-color-scrim: rgb(0 0 0);
+  --md-sys-color-inverse-surface: rgb(232 226 212);
+  --md-sys-color-inverse-on-surface: rgb(51 48 39);
+  --md-sys-color-inverse-primary: rgb(109 94 15);
+  --md-sys-color-primary-fixed: rgb(248 226 135);
+  --md-sys-color-on-primary-fixed: rgb(34 27 0);
+  --md-sys-color-primary-fixed-dim: rgb(219 198 110);
+  --md-sys-color-on-primary-fixed-variant: rgb(83 70 0);
+  --md-sys-color-secondary-fixed: rgb(238 226 188);
+  --md-sys-color-on-secondary-fixed: rgb(33 27 4);
+  --md-sys-color-secondary-fixed-dim: rgb(209 198 161);
+  --md-sys-color-on-secondary-fixed-variant: rgb(78 71 42);
+  --md-sys-color-tertiary-fixed: rgb(197 236 206);
+  --md-sys-color-on-tertiary-fixed: rgb(0 33 15);
+  --md-sys-color-tertiary-fixed-dim: rgb(169 208 179);
+  --md-sys-color-on-tertiary-fixed-variant: rgb(44 78 56);
+  --md-sys-color-surface-dim: rgb(21 19 11);
+  --md-sys-color-surface-bright: rgb(60 57 48);
+  --md-sys-color-surface-container-lowest: rgb(16 14 7);
+  --md-sys-color-surface-container-low: rgb(30 27 19);
+  --md-sys-color-surface-container: rgb(34 32 23);
+  --md-sys-color-surface-container-high: rgb(45 42 33);
+  --md-sys-color-surface-container-highest: rgb(56 53 43);
+  color-scheme: dark;
+}
