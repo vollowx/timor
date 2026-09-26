@@ -6,7 +6,7 @@ import { timeSync } from "../lib/time-sync.js";
 import { timezoneStore } from "../lib/timezones.js";
 
 import "iconify-icon";
-import "@vollowx/seele/m3/loading-indicator/loading-indicator.js";
+import "@vollowx/seele/m3/loading/loading.js";
 import "@vollowx/seele/m3/fab/fab.js";
 
 import "./world-map.js";

@@ -1,56 +1,10 @@
+@import "../../node_modules/@vollowx/seele/src/m3/styles/base.css";
+@import "../../node_modules/@vollowx/seele/src/m3/styles/motion-expressive.css";
+@import "../../node_modules/@vollowx/seele/src/m3/styles/defaults.css";
+
 :root {
   --md-ref-typeface-brand: "Google Sans Flex";
   --md-ref-typeface-plain: "Google Sans Flex";
-
-  --_brand: var(--md-ref-typeface-brand, sans-serif);
-  --_plain: var(--md-ref-typeface-plain, sans-serif);
-
-  --md-sys-typography-display-large: 400 3.5625rem / 4rem var(--_brand);
-  --md-sys-typography-display-medium: 400 2.8125rem / 3.25rem var(--_brand);
-  --md-sys-typography-display-small: 400 2.25rem / 2.75rem var(--_brand);
-  --md-sys-typography-headline-large: 400 2rem / 2.5rem var(--_brand);
-  --md-sys-typography-headline-medium: 400 1.75rem / 2.25rem var(--_brand);
-  --md-sys-typography-headline-small: 400 1.5rem / 2rem var(--_brand);
-  --md-sys-typography-title-large: 400 1.375rem / 1.75rem var(--_brand);
-  --md-sys-typography-title-medium: 500 1rem / 1.25rem var(--_plain);
-  --md-sys-typography-title-small: 500 0.875rem / 1.125rem var(--_plain);
-  --md-sys-typography-label-large: 500 0.875rem / 1.25rem var(--_plain);
-  --md-sys-typography-label-medium: 500 0.75rem / 1rem var(--_plain);
-  --md-sys-typography-label-small: 500 0.6875rem / 0.875rem var(--_plain);
-  --md-sys-typography-body-large: 400 1rem / 1.5rem var(--_plain);
-  --md-sys-typography-body-medium: 400 0.875rem / 1.25rem var(--_plain);
-  --md-sys-typography-body-small: 400 0.75rem / 1rem var(--_plain);
-
-  --md-sys-elevation-level-0: 0;
-  --md-sys-elevation-level-1: 1;
-  --md-sys-elevation-level-2: 3;
-  --md-sys-elevation-level-3: 6;
-  --md-sys-elevation-level-4: 8;
-  --md-sys-elevation-level-5: 12;
-  --md-sys-elevation-shadow-1:
-    0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.3);
-  --md-sys-elevation-shadow-2:
-    0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.3);
-  --md-sys-elevation-shadow-3:
-    0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
-  --md-sys-elevation-shadow-4:
-    0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px rgba(0, 0, 0, 0.3);
-  --md-sys-elevation-shadow-5:
-    0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.3);
-
-  --md-sys-motion-spatial-fast: cubic-bezier(0.42, 1.67, 0.21, 0.9);
-  --md-sys-motion-spatial-fast-duration: 350ms;
-  --md-sys-motion-spatial-default: cubic-bezier(0.38, 1.21, 0.22, 1);
-  --md-sys-motion-spatial-default-duration: 500ms;
-  --md-sys-motion-spatial-slow: cubic-bezier(0.39, 1.29, 0.35, 0.98);
-  --md-sys-motion-spatial-slow-duration: 650ms;
-
-  --md-sys-motion-effects-fast: cubic-bezier(0.31, 0.94, 0.34, 1);
-  --md-sys-motion-effects-fast-duration: 150ms;
-  --md-sys-motion-effects-default: cubic-bezier(0.34, 0.8, 0.34, 1);
-  --md-sys-motion-effects-default-duration: 200ms;
-  --md-sys-motion-effects-slow: cubic-bezier(0.34, 0.88, 0.34, 1);
-  --md-sys-motion-effects-slow-duration: 300ms;
 }
 
 :root[data-md-color-scheme="light"] {

@@ -17,4 +17,4 @@ bun preview
 - [ ] Try to do i18n with Lit
 - [ ] Support smaller screens like phones
     - [ ] Add navigation bar for seele
-- [ ] `autofocus` in dialogs
+- [x] `autofocus` in dialogs
