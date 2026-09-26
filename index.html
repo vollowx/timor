@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8faf0" />
+    <meta name="description" content="Timor - a clock, stopwatch and timer." />
+    <title>Timor</title>
+    <link rel="icon" type="image/svg+xml" href="/timor/assets/icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght,ROND@6..144,1..1000,0..100&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/timor/assets/index.css" />
+    <script>
+      (() => {
+        try {
+          const theme = localStorage.getItem("timor.theme") || "auto";
+          const prefersDark = matchMedia(
+            "(prefers-color-scheme: dark)",
+          ).matches;
+          document.documentElement.dataset.mdColorScheme =
+            theme === "auto" ? (prefersDark ? "dark" : "light") : theme;
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body>
+    <!--lit-part dsVMIJkqkiE=--><timor-app><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      display: flex;
+      height: 100dvh;
+    }
+
+    main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--md-sys-color-surface-container);
+    }
+
+    .page {
+      flex: 1;
+      display: flex;
+      background-color: var(--md-sys-color-background);
+      border-radius: 28px;
+      margin-block: 16px;
+      margin-inline-end: 16px;
+      overflow: hidden;
+    }
+
+    ::view-transition-old(*) {
+      animation: vt-out 500ms linear forwards;
+    }
+
+    ::view-transition-new(*) {
+      animation: vt-in 500ms linear;
+    }
+
+    @keyframes vt-out {
+      0% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      5% {
+        opacity: 1;
+        transform: translateY(-0.7px);
+      }
+      10% {
+        opacity: 1;
+        transform: translateY(-2.9px);
+      }
+      15% {
+        opacity: 1;
+        transform: translateY(-8.4px);
+      }
+      20% {
+        opacity: 0;
+        transform: translateY(-19.3px);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+    }
+
+    @keyframes vt-in {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      5% {
+        opacity: 0;
+        transform: translateY(29.3px);
+      }
+      10% {
+        opacity: 0;
+        transform: translateY(27.1px);
+      }
+      15% {
+        opacity: 0;
+        transform: translateY(21.6px);
+      }
+      20% {
+        opacity: 0.837;
+        transform: translateY(10.7px);
+      }
+      25% {
+        opacity: 1;
+        transform: translateY(6.7px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style><!--lit-part SLsmmjRDAKI=-->
+      <!--lit-node 0--><md-nav-rail  defer-hydration><template shadowroot="open" shadowrootmode="open"><style>:host{background-color:var(--md-sys-color-surface-container);box-sizing:border-box;-webkit-user-select:none;user-select:none;flex-shrink:0;grid-template-rows:min-content auto;justify-content:space-between;gap:40px;width:96px;height:100%;padding-block:20px;display:grid;overflow:visible}.actions{place-self:center;display:grid;position:sticky;top:-44px}::slotted(md-fab){box-shadow:none}.items{grid-template-areas:"stack";display:grid}slot:not([name]){flex-direction:column;grid-area:stack;gap:8px;padding:0;list-style:none;display:flex;position:relative}::slotted([end]){margin-block-start:auto}</style><!--lit-part EpFmZOCd7oc=--><div class="actions"><slot name="menu"></slot><slot name="fab"></slot></div><div class="items"><slot></slot></div><!--/lit-part--></template>
+        <!--lit-node 1--><md-fab
+          
+          
+          
+          
+         notransition aria-disabled="false" hydrate-internals-aria-disabled="false" role="button" hydrate-internals-role="button" slot="fab" aria-label="Add timer" color="primary-container" type="button" size="s" defer-hydration><template shadowroot="open" shadowrootmode="open"><style>:host([hidden]){visibility:hidden;display:none}[part~=target]{box-sizing:border-box;content:"";width:100%;min-width:48px;height:100%;min-height:48px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}:host{--md-focus-ring-shape:var(--_border-radius);--_size:56px;--_border-radius:16px;--_icon-size:24px;background-color:var(--md-sys-color-primary);border-radius:var(--_border-radius);box-shadow:var(--md-sys-elevation-shadow-3);box-sizing:border-box;color:var(--md-sys-color-on-primary);cursor:pointer;font:var(--md-sys-typography-label-large);height:var(--_size);min-width:var(--_size);padding-inline:calc((var(--_size) - var(--_icon-size)) / 2);-webkit-tap-highlight-color:transparent;transition:box-shadow var(--md-sys-motion-effects-default-duration) var(--md-sys-motion-effects-default);-webkit-user-select:none;user-select:none;vertical-align:middle;outline:0;justify-content:center;align-items:center;gap:8px;display:inline-flex;position:relative}md-ripple,md-focus-ring{position:absolute}:host([size=m]){--_size:80px;--_border-radius:20px;--_icon-size:28px}:host([size=l]){--_size:96px;--_border-radius:28px;--_icon-size:36px}:host([color=primary-container]){color:var(--md-sys-color-on-primary-container);background-color:var(--md-sys-color-primary-container)}:host([color=secondary-container]){color:var(--md-sys-color-on-secondary-container);background-color:var(--md-sys-color-secondary-container)}:host([color=tertiary-container]){color:var(--md-sys-color-on-tertiary-container);background-color:var(--md-sys-color-tertiary-container)}:host([color=secondary]){color:var(--md-sys-color-on-secondary);background-color:var(--md-sys-color-secondary)}:host([color=tertiary]){color:var(--md-sys-color-on-tertiary);background-color:var(--md-sys-color-tertiary)}:host([color=surface]){color:var(--md-sys-color-primary);background-color:var(--md-sys-color-surface-container-high)}:host(:disabled){background-color:oklch(from var(--md-sys-color-on-surface) l c h / 10%);color:oklch(from var(--md-sys-color-on-surface) l c h / 38%);box-shadow:none;pointer-events:none}@media (hover:hover) and (pointer:fine){:host(:hover:not(:active)){box-shadow:var(--md-sys-elevation-shadow-4)}}::slotted(:not([slot=label])){fill:currentColor;block-size:1em;font-size:var(--_icon-size);inline-size:1em}::slotted([slot=label]){margin-inline:4px}@media (forced-colors:active){:host{forced-color-adjust:none;color:buttontext;background:buttonface;border:1px solid buttonborder}}</style><!--lit-part YvTyOPAvxNg=--><md-focus-ring></md-focus-ring><md-ripple></md-ripple><span part="target"></span><slot part="icon" aria-hidden="true"></slot><slot part="label" name="label"></slot><!--/lit-part--></template>
+          <iconify-icon icon="material-symbols:add"></iconify-icon>
+        </md-fab>
+
+        <!--lit-part--><!--lit-part N+xZByv/K5M=-->
+            <!--lit-node 0--><md-nav-rail-item
+              
+              
+              
+             notransition aria-disabled="false" hydrate-internals-aria-disabled="false" role="button" hydrate-internals-role="button" label="Clock" data-page="clock" active type="button" defer-hydration><template shadowroot="open" shadowrootmode="open"><style>:host{color:var(--md-sys-color-on-surface-variant);cursor:pointer;outline:0;grid-template-rows:40px 1fr;justify-content:flex-start;width:max-content;display:grid;position:relative}.pill-root{grid-template:".start icon.label end."32px/20px 16px 24px 0 0fr 16px 20px;place-self:center;display:grid;position:relative}.pill{border-radius:9999px;grid-area:1/start-start/auto/end-end;position:relative}::slotted(*){fill:currentColor;place-self:center;block-size:1em;inline-size:1em;font-size:24px;position:absolute}::slotted([slot=active]){opacity:0}.label-inside{font:var(--md-sys-typography-label-large);display:none}.label-outside{font:var(--md-sys-typography-label-medium);pointer-events:none;text-align:center;word-break:break-word;grid-template-rows:1fr;width:96px;display:block;overflow:hidden}:host([active]){& .pill{color:var(--md-sys-color-on-secondary-container)}& md-ripple{background-color:var(--md-sys-color-secondary-container)}& ::slotted([slot=active]){opacity:1}& ::slotted(:not([slot=active])){opacity:0}& .label-outside{color:var(--md-sys-color-secondary)}}</style><!--lit-part WRSxCs0b3yA=--><div class="pill-root"><div class="pill"><md-focus-ring></md-focus-ring><md-ripple></md-ripple></div><slot aria-hidden="true"></slot><slot aria-hidden="true" name="active"></slot><span class="label-inside"><!--lit-part-->Clock<!--/lit-part--></span></div><span class="label-outside"><!--lit-part-->Clock<!--/lit-part--></span><!--/lit-part--></template>
+              <!--lit-node 1--><iconify-icon icon="material-symbols:schedule-outline"></iconify-icon>
+              <!--lit-node 2--><iconify-icon
+                slot="active"
+                icon="material-symbols:schedule"
+              ></iconify-icon>
+            </md-nav-rail-item>
+          <!--/lit-part--><!--lit-part N+xZByv/K5M=-->
+            <!--lit-node 0--><md-nav-rail-item
+              
+              
+              
+             notransition aria-disabled="false" hydrate-internals-aria-disabled="false" role="button" hydrate-internals-role="button" label="Timer" data-page="timer" type="button" defer-hydration><template shadowroot="open" shadowrootmode="open"><style>:host{color:var(--md-sys-color-on-surface-variant);cursor:pointer;outline:0;grid-template-rows:40px 1fr;justify-content:flex-start;width:max-content;display:grid;position:relative}.pill-root{grid-template:".start icon.label end."32px/20px 16px 24px 0 0fr 16px 20px;place-self:center;display:grid;position:relative}.pill{border-radius:9999px;grid-area:1/start-start/auto/end-end;position:relative}::slotted(*){fill:currentColor;place-self:center;block-size:1em;inline-size:1em;font-size:24px;position:absolute}::slotted([slot=active]){opacity:0}.label-inside{font:var(--md-sys-typography-label-large);display:none}.label-outside{font:var(--md-sys-typography-label-medium);pointer-events:none;text-align:center;word-break:break-word;grid-template-rows:1fr;width:96px;display:block;overflow:hidden}:host([active]){& .pill{color:var(--md-sys-color-on-secondary-container)}& md-ripple{background-color:var(--md-sys-color-secondary-container)}& ::slotted([slot=active]){opacity:1}& ::slotted(:not([slot=active])){opacity:0}& .label-outside{color:var(--md-sys-color-secondary)}}</style><!--lit-part WRSxCs0b3yA=--><div class="pill-root"><div class="pill"><md-focus-ring></md-focus-ring><md-ripple></md-ripple></div><slot aria-hidden="true"></slot><slot aria-hidden="true" name="active"></slot><span class="label-inside"><!--lit-part-->Timer<!--/lit-part--></span></div><span class="label-outside"><!--lit-part-->Timer<!--/lit-part--></span><!--/lit-part--></template>
+              <!--lit-node 1--><iconify-icon icon="material-symbols:alarm-outline"></iconify-icon>
+              <!--lit-node 2--><iconify-icon
+                slot="active"
+                icon="material-symbols:alarm"
+              ></iconify-icon>
+            </md-nav-rail-item>
+          <!--/lit-part--><!--lit-part N+xZByv/K5M=-->
+            <!--lit-node 0--><md-nav-rail-item
+              
+              
+              
+             notransition aria-disabled="false" hydrate-internals-aria-disabled="false" role="button" hydrate-internals-role="button" label="Stopwatch" data-page="stopwatch" type="button" defer-hydration><template shadowroot="open" shadowrootmode="open"><style>:host{color:var(--md-sys-color-on-surface-variant);cursor:pointer;outline:0;grid-template-rows:40px 1fr;justify-content:flex-start;width:max-content;display:grid;position:relative}.pill-root{grid-template:".start icon.label end."32px/20px 16px 24px 0 0fr 16px 20px;place-self:center;display:grid;position:relative}.pill{border-radius:9999px;grid-area:1/start-start/auto/end-end;position:relative}::slotted(*){fill:currentColor;place-self:center;block-size:1em;inline-size:1em;font-size:24px;position:absolute}::slotted([slot=active]){opacity:0}.label-inside{font:var(--md-sys-typography-label-large);display:none}.label-outside{font:var(--md-sys-typography-label-medium);pointer-events:none;text-align:center;word-break:break-word;grid-template-rows:1fr;width:96px;display:block;overflow:hidden}:host([active]){& .pill{color:var(--md-sys-color-on-secondary-container)}& md-ripple{background-color:var(--md-sys-color-secondary-container)}& ::slotted([slot=active]){opacity:1}& ::slotted(:not([slot=active])){opacity:0}& .label-outside{color:var(--md-sys-color-secondary)}}</style><!--lit-part WRSxCs0b3yA=--><div class="pill-root"><div class="pill"><md-focus-ring></md-focus-ring><md-ripple></md-ripple></div><slot aria-hidden="true"></slot><slot aria-hidden="true" name="active"></slot><span class="label-inside"><!--lit-part-->Stopwatch<!--/lit-part--></span></div><span class="label-outside"><!--lit-part-->Stopwatch<!--/lit-part--></span><!--/lit-part--></template>
+              <!--lit-node 1--><iconify-icon icon="material-symbols:timer-outline"></iconify-icon>
+              <!--lit-node 2--><iconify-icon
+                slot="active"
+                icon="material-symbols:timer"
+              ></iconify-icon>
+            </md-nav-rail-item>
+          <!--/lit-part--><!--/lit-part-->
+
+        <!--lit-node 4--><md-nav-rail-item
+          
+          
+          
+          
+         notransition aria-disabled="false" hydrate-internals-aria-disabled="false" role="button" hydrate-internals-role="button" label="Settings" data-page="settings" end type="button" defer-hydration><template shadowroot="open" shadowrootmode="open"><style>:host{color:var(--md-sys-color-on-surface-variant);cursor:pointer;outline:0;grid-template-rows:40px 1fr;justify-content:flex-start;width:max-content;display:grid;position:relative}.pill-root{grid-template:".start icon.label end."32px/20px 16px 24px 0 0fr 16px 20px;place-self:center;display:grid;position:relative}.pill{border-radius:9999px;grid-area:1/start-start/auto/end-end;position:relative}::slotted(*){fill:currentColor;place-self:center;block-size:1em;inline-size:1em;font-size:24px;position:absolute}::slotted([slot=active]){opacity:0}.label-inside{font:var(--md-sys-typography-label-large);display:none}.label-outside{font:var(--md-sys-typography-label-medium);pointer-events:none;text-align:center;word-break:break-word;grid-template-rows:1fr;width:96px;display:block;overflow:hidden}:host([active]){& .pill{color:var(--md-sys-color-on-secondary-container)}& md-ripple{background-color:var(--md-sys-color-secondary-container)}& ::slotted([slot=active]){opacity:1}& ::slotted(:not([slot=active])){opacity:0}& .label-outside{color:var(--md-sys-color-secondary)}}</style><!--lit-part WRSxCs0b3yA=--><div class="pill-root"><div class="pill"><md-focus-ring></md-focus-ring><md-ripple></md-ripple></div><slot aria-hidden="true"></slot><slot aria-hidden="true" name="active"></slot><span class="label-inside"><!--lit-part-->Settings<!--/lit-part--></span></div><span class="label-outside"><!--lit-part-->Settings<!--/lit-part--></span><!--/lit-part--></template>
+          <iconify-icon icon="material-symbols:settings-outline"></iconify-icon>
+          <iconify-icon
+            slot="active"
+            icon="material-symbols:settings"
+          ></iconify-icon>
+        </md-nav-rail-item>
+      </md-nav-rail>
+
+      <!--lit-node 7--><main >
+        <div class="page"><!--lit-part 8+c2n9y4Fz0=--><!--lit-node 0--><clock-view defer-hydration><template shadowroot="open" shadowrootmode="open"><style>
+    :host {
+      position: relative;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    world-map {
+      position: absolute;
+      inset: 0;
+    }
+
+    .list-area {
+      position: relative;
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 48px 24px 24px;
+      max-height: 70%;
+    }
+
+    md-fab {
+      position: absolute;
+      inset-block-end: 24px;
+      inset-inline-end: 24px;
+      z-index: 10;
+    }
+
+    .sync {
+      box-sizing: border-box;
+      padding-block-end: 8px;
+      padding-inline-start: 12px;
+      border-radius: 12px;
+      font: var(--md-sys-typography-body-small);
+      color: var(--md-sys-color-on-surface-variant);
+    }
+    .error {
+      color: var(--md-sys-color-error);
+    }
+  </style><!--lit-part E2KxN2d5ssY=-->
+      <world-map></world-map>
+
+      <div class="list-area">
+        <div class="sync"><!--lit-part NJI1jDJyrso=--><!--lit-node 0--><md-loading
+          
+         aria-valuemax="1" hydrate-internals-aria-valuemax="1" aria-valuemin="0" hydrate-internals-aria-valuemin="0" role="progressbar" hydrate-internals-role="progressbar" aria-label="Syncing accurate time" defer-hydration><template shadowroot="open" shadowrootmode="open"><style>:host{aspect-ratio:1;background-color:var(--md-sys-color-surface);border-radius:9999px;place-items:center;width:48px;display:grid}:host([contained]){background-color:var(--md-sys-color-primary-container)}canvas{width:82%;height:82%;display:block}</style><!--lit-part tk4D4tf0qaA=--><!--lit-node 0--><canvas width="640" height="640" aria-hidden="true"></canvas><!--/lit-part--></template></md-loading><!--/lit-part--></div>
+        <!--lit-node 4--><timezone-list ></timezone-list>
+      </div>
+
+      <!--lit-node 5--><md-fab  notransition aria-disabled="false" hydrate-internals-aria-disabled="false" role="button" hydrate-internals-role="button" type="button" size="s" color="primary" defer-hydration><template shadowroot="open" shadowrootmode="open"><style>:host([hidden]){visibility:hidden;display:none}[part~=target]{box-sizing:border-box;content:"";width:100%;min-width:48px;height:100%;min-height:48px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}:host{--md-focus-ring-shape:var(--_border-radius);--_size:56px;--_border-radius:16px;--_icon-size:24px;background-color:var(--md-sys-color-primary);border-radius:var(--_border-radius);box-shadow:var(--md-sys-elevation-shadow-3);box-sizing:border-box;color:var(--md-sys-color-on-primary);cursor:pointer;font:var(--md-sys-typography-label-large);height:var(--_size);min-width:var(--_size);padding-inline:calc((var(--_size) - var(--_icon-size)) / 2);-webkit-tap-highlight-color:transparent;transition:box-shadow var(--md-sys-motion-effects-default-duration) var(--md-sys-motion-effects-default);-webkit-user-select:none;user-select:none;vertical-align:middle;outline:0;justify-content:center;align-items:center;gap:8px;display:inline-flex;position:relative}md-ripple,md-focus-ring{position:absolute}:host([size=m]){--_size:80px;--_border-radius:20px;--_icon-size:28px}:host([size=l]){--_size:96px;--_border-radius:28px;--_icon-size:36px}:host([color=primary-container]){color:var(--md-sys-color-on-primary-container);background-color:var(--md-sys-color-primary-container)}:host([color=secondary-container]){color:var(--md-sys-color-on-secondary-container);background-color:var(--md-sys-color-secondary-container)}:host([color=tertiary-container]){color:var(--md-sys-color-on-tertiary-container);background-color:var(--md-sys-color-tertiary-container)}:host([color=secondary]){color:var(--md-sys-color-on-secondary);background-color:var(--md-sys-color-secondary)}:host([color=tertiary]){color:var(--md-sys-color-on-tertiary);background-color:var(--md-sys-color-tertiary)}:host([color=surface]){color:var(--md-sys-color-primary);background-color:var(--md-sys-color-surface-container-high)}:host(:disabled){background-color:oklch(from var(--md-sys-color-on-surface) l c h / 10%);color:oklch(from var(--md-sys-color-on-surface) l c h / 38%);box-shadow:none;pointer-events:none}@media (hover:hover) and (pointer:fine){:host(:hover:not(:active)){box-shadow:var(--md-sys-elevation-shadow-4)}}::slotted(:not([slot=label])){fill:currentColor;block-size:1em;font-size:var(--_icon-size);inline-size:1em}::slotted([slot=label]){margin-inline:4px}@media (forced-colors:active){:host{forced-color-adjust:none;color:buttontext;background:buttonface;border:1px solid buttonborder}}</style><!--lit-part YvTyOPAvxNg=--><md-focus-ring></md-focus-ring><md-ripple></md-ripple><span part="target"></span><slot part="icon" aria-hidden="true"></slot><slot part="label" name="label"></slot><!--/lit-part--></template>
+        <iconify-icon icon="material-symbols:add"></iconify-icon>
+        <span slot="label">Add location</span>
+      </md-fab>
+
+      <timezone-dialog></timezone-dialog>
+    <!--/lit-part--></template></clock-view><!--/lit-part--></div>
+      </main>
+
+      <!--lit-node 10--><timer-dialog ></timer-dialog>
+    <!--/lit-part--></template></timor-app><!--/lit-part-->
+    <script type="module" src="/timor/assets/index.js"></script>
+  </body>
+</html>
