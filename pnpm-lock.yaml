@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@lit-labs/ssr':
         specifier: ^4.1.0
-        version: 4.1.0
+        version: 4.1.0(@types/node@26.6.5)
       '@lit-labs/ssr-client':
         specifier: ^1.1.8
         version: 1.1.8
@@ -30,6 +30,9 @@ importers:
       '@types/bun':
         specifier: ^1.4.2
         version: 1.4.4
+      '@types/node':
+        specifier: ^26.6.5
+        version: 26.6.5
       '@web/dev-server':
         specifier: ^1.0.0
         version: 1.0.0(supports-color@7.2.0)
@@ -1460,7 +1463,7 @@ snapshots:
 
   '@lit-labs/ssr-dom-shim@1.6.0': {}
 
-  '@lit-labs/ssr@4.1.0':
+  '@lit-labs/ssr@4.1.0(@types/node@26.6.5)':
     dependencies:
       '@lit-labs/ssr-client': 1.1.8
       '@lit-labs/ssr-dom-shim': 1.6.0
@@ -1472,6 +1475,8 @@ snapshots:
       lit-html: 3.3.3
       node-fetch: 3.3.2
       parse5: 7.3.0
+    optionalDependencies:
+      '@types/node': 26.6.5
 
   '@lit/reactive-element@2.1.2':
     dependencies:

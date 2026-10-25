@@ -6,8 +6,8 @@
   "description": "A web clock app.",
   "scripts": {
     "dev": "wds",
-    "build": "bun run scripts/build.ts",
-    "preview": "bun run scripts/preview.ts",
+    "build": "node scripts/build.ts",
+    "preview": "node scripts/preview.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@types/bun": "^1.4.2",
+    "@types/node": "^26.6.5",
     "@web/dev-server": "^1.0.0",
     "@web/dev-server-esbuild": "^2.0.0",
     "esbuild": "^0.28.2",
