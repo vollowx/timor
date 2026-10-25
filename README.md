@@ -6,10 +6,10 @@ A web clock app with clock, stopwatch, and timer. Written with
 ## Getting started
 
 ```bash
-bun i
-bun dev
-bun build
-bun preview
+pnpm install
+pnpm run dev
+pnpm run build
+pnpm run preview
 ```
 
 ## TODO

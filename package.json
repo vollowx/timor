@@ -24,6 +24,6 @@
     "@web/dev-server-esbuild": "^2.0.0",
     "esbuild": "^0.28.2",
     "lightningcss": "^1.33.0",
-    "typescript": "^5.9.3"
+    "typescript": "^7.0.2"
   }
 }
